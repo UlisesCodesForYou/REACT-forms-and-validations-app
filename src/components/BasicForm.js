@@ -19,7 +19,7 @@ const BasicForm = (props) => {
         <button>Submit</button>
       </div>
     </form>
-  ); // to this 
+  ); 
 };
 
 export default BasicForm;
