@@ -1,8 +1,6 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 const SimpleInput = (props) => {
-
-  const nameInputRef = useRef()
   const [enteredName, setEnteredName] = useState("");
 
   const nameInputChangeHandler = (event) => {
@@ -11,13 +9,24 @@ const SimpleInput = (props) => {
 
   const formSubmissionHandler = (event) => {
     event.preventDefault();
-    console.log(enteredName);
+
+    if (enteredName.trim() === "") {
+      return;
+    } else {
+      console.log(enteredName);
+      setEnteredName(""); //This will reset the form when it is submitted.  I have set it to an empty string.
+    }
   };
   return (
     <form onSubmit={formSubmissionHandler}>
       <div className="form-control">
         <label htmlFor="name">Your Name</label>
-        <input ref = {nameInputRef} type="text" id="name" onChange={nameInputChangeHandler} />
+        <input
+          type="text"
+          id="name"
+          onChange={nameInputChangeHandler}
+          value={enteredName}
+        />
       </div>
       <div className="form-actions">
         <button>Submit</button>
